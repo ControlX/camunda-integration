@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="4f1e9f1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.1.0" camunda:diagramRelationId="bf9a8ff3-49b3-422d-bee0-4951e041e2d7">
+  <bpmn:collaboration id="Collaboration_1oxq47f">
+    <bpmn:participant id="Participant_0yt99da" name="Multiplier Pool" processRef="worker-bpmn" />
+  </bpmn:collaboration>
+  <bpmn:process id="worker-bpmn" name="Worker BPMN" isExecutable="true">
+    <bpmn:serviceTask id="multiplier-job" name="Multiplier">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="multiplier-task-definition" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1ey99f4</bpmn:incoming>
+      <bpmn:outgoing>Flow_0v9uhn5</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1ey99f4</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1ey99f4" sourceRef="StartEvent_1" targetRef="multiplier-job" />
+    <bpmn:sequenceFlow id="Flow_0v9uhn5" sourceRef="multiplier-job" targetRef="Event_1wszxc3" />
+    <bpmn:endEvent id="Event_1wszxc3">
+      <bpmn:incoming>Flow_0v9uhn5</bpmn:incoming>
+    </bpmn:endEvent>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_1oxq47f">
+      <bpmndi:BPMNShape id="Participant_0yt99da_di" bpmnElement="Participant_0yt99da" isHorizontal="true">
+        <dc:Bounds x="130" y="110" width="630" height="250" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1sukix3_di" bpmnElement="multiplier-job">
+        <dc:Bounds x="390" y="180" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="262" y="202" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1wszxc3_di" bpmnElement="Event_1wszxc3">
+        <dc:Bounds x="572" y="202" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1ey99f4_di" bpmnElement="Flow_1ey99f4">
+        <di:waypoint x="298" y="220" />
+        <di:waypoint x="390" y="220" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0v9uhn5_di" bpmnElement="Flow_0v9uhn5">
+        <di:waypoint x="490" y="220" />
+        <di:waypoint x="572" y="220" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

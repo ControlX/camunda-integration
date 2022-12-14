@@ -1,0 +1,155 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Camunda Orchestration",
+    "description": "Camunda Orchestration endpoints",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://camunda-api.marshlabs.dev"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Quote",
+      "description": "Get, Delete quotes for a product"
+    }
+  ],
+  "paths": {
+    "/quote/product/{product}": {
+      "get": {
+        "tags": [
+          "Quote"
+        ],
+        "summary": "Get quote request id for a product search",
+        "description": "Get quotes for a product like Auto, GL, CAT",
+        "parameters": [
+          {
+            "name": "product",
+            "in": "path",
+            "description": "Type of product to be searched",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "Quotes generation under process with quote_request_id: 2251799813702777"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/quote/{quote_request_id}": {
+      "get": {
+        "tags": [
+          "Quote"
+        ],
+        "summary": "Get quotes from carriers of a product for a quote_request_id",
+        "description": "Get quotes from carriers of a product for a quote_request_id",
+        "parameters": [
+          {
+            "name": "quote_request_id",
+            "in": "path",
+            "description": "Quote Request ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "briza": {
+                      "product": {}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/quote": {
+      "get": {
+        "tags": [
+          "Quote"
+        ],
+        "summary": "Get all quotes",
+        "description": "Get all quotes",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "20002234234": {
+                      "briza": {
+                        "product": {}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    },
+    "/quote/product": {
+      "delete": {
+        "tags": [
+          "Quote"
+        ],
+        "summary": "Delete all quotes",
+        "description": "Delete all quotes",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "success": "All Products Deleted!"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        }
+      }
+    }
+  }
+}
